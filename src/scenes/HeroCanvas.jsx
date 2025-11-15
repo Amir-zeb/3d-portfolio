@@ -6,24 +6,26 @@ import { DirectionalLightHelper } from "three";
 import * as THREE from "three";
 import ConeShape from "./shapes/ConeShape";
 import SphereShape from "./shapes/SphereShape";
+import IntroText from "./text/IntroText";
 
 const HeroCanvas = () => {
+    const [isNear, setIsNear] = useState(true);
 
     return (
-        <div className="canvas_container">
+        <div className="canvas_container" onClick={() => { setIsNear(!isNear); }} >
             <Canvas
                 orthographic
                 camera={{
-                    zoom: 150,
-                    position: [-1, 1, 5],
+                    zoom: 100,
+                    position: [0, 0, 5],
                     fov: 75,
                     near: 0.1,
                     far: 1000
-                }}
-            >
+                }} >
                 <OrbitControls />
-                <SphereWithCones />
+                <SphereWithCones isNear={isNear} />
                 <SpheresGroup />
+                <IntroText />
                 <DirLightWithHelper />
                 <ambientLight intensity={1} color="#ffffff" />
             </Canvas>
@@ -36,7 +38,7 @@ const SpheresGroup = () => {
     const texture = useTexture('public/sp2.jpg')
 
     return (
-        <group>
+        <group position={[3, 0, 0]}>
             <SphereShape args={[0.2, 20]} position={[3, 2, -2]} color="#d751de" folderName='cube1' map={texture} rotation={[0, THREE.MathUtils.degToRad(-50), 0]} />
             <SphereShape args={[0.1, 20]} position={[-2, 2, 2]} color="#78f5a5" folderName='cube2' map={texture} rotation={[0, THREE.MathUtils.degToRad(-50), 0]} />
             <SphereShape args={[0.3, 20]} position={[-2, -3, -2]} color="#5871d1" folderName='cube3' map={texture} rotation={[0, THREE.MathUtils.degToRad(-50), 0]} />
@@ -45,10 +47,11 @@ const SpheresGroup = () => {
     )
 }
 
-const SphereWithCones = () => {
+const SphereWithCones = ({ isNear }) => {
     const ref = useRef()
-    const [isAnimating, setIsAnimating] = useState(false);
-    const texture = useTexture('public/sp2.jpg')
+    const texture = useTexture('/liquid-marbling-texture.jpg')
+    const normalMap = useTexture('/liquid-marbling-texture_displacement.png')
+    const displacementMap = useTexture('/liquid-marbling-texture_normal.png')
 
     const controls = useControls({
         radius: { value: 1, min: 0, max: 10, step: .1 },
@@ -68,10 +71,13 @@ const SphereWithCones = () => {
     });
 
     return (
-        <group ref={ref} position={[2, 0, 0]} onClick={() => { if (!isAnimating) setIsAnimating(true); }}>
+        <group ref={ref} position={[3, 0, 0]} >
             {/* Cube */}
-            <SphereShape color='red' position={[0, 0, 0]} args={[0.7, 50, 50]}
+            <SphereShape color='#ff80cc' position={[0, 0, 0]} args={[0.7, 200, 200]}
                 map={texture}
+            // normalMap={normalMap}
+            // displacementMap={displacementMap}
+            // displacementScale={0.02}
             />
 
             {/* +X Face */}
@@ -80,8 +86,7 @@ const SphereWithCones = () => {
                 rotation={[Math.PI / 4, 0, -Math.PI / 2]}
                 axis='x'
                 folderName='+X Face'
-                isAnimating={isAnimating}
-                setIsAnimating={setIsAnimating}
+                isNear={isNear}
             />
 
             {/* -X Face */}
@@ -91,8 +96,7 @@ const SphereWithCones = () => {
                 axis='x'
                 negative
                 folderName='-X Face'
-                isAnimating={isAnimating}
-                setIsAnimating={setIsAnimating}
+                isNear={isNear}
             />
 
             {/* +Y Face */}
@@ -102,8 +106,7 @@ const SphereWithCones = () => {
                 rotation={[0, THREE.MathUtils.degToRad(135), 0]}
                 axis='y'
                 folderName='+Y Face'
-                isAnimating={isAnimating}
-                setIsAnimating={setIsAnimating}
+                isNear={isNear}
             />
 
             {/* -Y Face */}
@@ -113,8 +116,7 @@ const SphereWithCones = () => {
                 axis='y'
                 negative
                 folderName='-Y Face'
-                isAnimating={isAnimating}
-                setIsAnimating={setIsAnimating}
+                isNear={isNear}
             />
 
             {/* +Z Face */}
@@ -123,8 +125,7 @@ const SphereWithCones = () => {
                 rotation={[Math.PI / 2, Math.PI / 4, 0]}
                 axis='z'
                 folderName='+Z Face'
-                isAnimating={isAnimating}
-                setIsAnimating={setIsAnimating}
+                isNear={isNear}
             />
 
             {/* -Z Face */}
@@ -134,8 +135,7 @@ const SphereWithCones = () => {
                 axis='z'
                 negative
                 folderName='-Z Face'
-                isAnimating={isAnimating}
-                setIsAnimating={setIsAnimating}
+                isNear={isNear}
             />
         </group>
     );

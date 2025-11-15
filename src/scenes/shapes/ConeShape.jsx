@@ -3,11 +3,11 @@ import { folder, useControls } from "leva";
 import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 
-const ConeShape = ({ position = [0, 0, 0], rotation = [0, 0, 0], folderName = '', axis = "x", negative = false, isAnimating, setIsAnimating }) => {
+const ConeShape = ({ position = [0, 0, 0], rotation = [0, 0, 0], folderName = '', axis = "x", negative = false, isNear }) => {
     const ref = useRef();
-    const animTime = useRef(0); // local clock for this animation
-    const amplitude = 1;     // how far it moves
-    const duration = 2;         // duration of one full animation cycle in seconds
+    const offset = useRef(0);
+    const rotOffset = useRef(0);
+    const rotationSpeed = useRef(0);
 
     const sign = negative ? -1 : 1;
 
@@ -73,54 +73,71 @@ const ConeShape = ({ position = [0, 0, 0], rotation = [0, 0, 0], folderName = ''
     // Animation
     // ==============================
     useFrame((state, delta) => {
-        if (!ref.current || !isAnimating) return;
+        if (!ref.current) return;
+        // Get elapsed time in seconds
+        const time = state.clock.getElapsedTime();
 
-        // increment animation time
-        animTime.current += delta;
+        // -------------------------------
+        // Smooth Near ↔ Far Transition
+        // -------------------------------
+        const target = isNear ? 0 : 0.5;
+        offset.current = THREE.MathUtils.lerp(
+            offset.current,
+            target,
+            delta * 10 // smooth, frame-rate independent
+        );
+        // Clamp to avoid floating tail
+        offset.current = THREE.MathUtils.clamp(offset.current, 0, 0.5);
+        const isTransitioning = Math.abs(offset.current - target) > 0.0005;
 
-        // normalized time [0, 1]
-        const tNorm = Math.min(animTime.current / duration, 1);
+        // Base position: near = original, far = offset by 1 unit
+        const baseOffset = offset.current * sign;
 
-        // sin curve for smooth to-and-fro motion
-        const offset = Math.sin(tNorm * Math.PI) * amplitude * sign;
-        const round = THREE.MathUtils.degToRad(45) * tNorm * 8;
+        // compute base position for the selected axis
+        let posX = position[0];
+        let posY = position[1];
+        let posZ = position[2];
 
-        // const elapsed = state.clock.getElapsedTime();
-        // // Sin oscillation: -1 → 1
-        // const sinVal = Math.sin((elapsed / 2) * Math.PI); // period = 2 seconds
+        if (axis === "x") posX = position[0] + baseOffset;
+        if (axis === "y") posY = position[1] + baseOffset;
+        if (axis === "z") posZ = position[2] + baseOffset;
 
-        // // Map to 0 → 1
-        // const opacity = (sinVal + 1) / 2;
+        // OUTWARD → RETURN (0 → 1 → 0)
+        const bounce = Math.abs(Math.sin(time * 0.5)) * 0.3 * sign;
 
-        // // If multiple materials
-        // if (Array.isArray(ref.current.material)) {
-        //     ref.current.material.forEach((mat) => {
-        //         mat.opacity = opacity;
-        //     });
-        // }
+        // now add bounce around the base position
+        if (axis === "x") ref.current.position.x = posX + bounce;
+        if (axis === "y") ref.current.position.y = posY + bounce;
+        if (axis === "z") ref.current.position.z = posZ + bounce;
 
-        if (axis === "x") {
-            ref.current.position.x = position[0] + offset;
-            ref.current.rotation.x = rotation[0] + round;
-        }
-        if (axis === "y") {
-            ref.current.position.y = position[1] + offset;
-            ref.current.rotation.y = rotation[1] + round;
-            // ref.current.rotation.y = THREE.MathUtils.degToRad(rotation[1] + 45) * tNorm * 5;
-        }
-        if (axis === "z") {
-            ref.current.position.z = position[2] + offset;
-            ref.current.rotation.y = rotation[1] + round;
-            // ref.current.rotation.y = THREE.MathUtils.degToRad(rotation[2] + 45) * tNorm * 5;
-        }
+        // -------------------------------
+        // Rotation ONLY DURING TRANSITION
+        // -------------------------------
+        if (isTransitioning) {
 
-        // stop animation after one cycle
-        if (tNorm >= 1) {
-            setIsAnimating(false);
-            animTime.current = 0;
-            // restore original position and rotation
-            ref.current.position.set(...position);
-            ref.current.rotation.set(...rotation);
+            // Near → Far = clockwise  
+            // Far → Near = anticlockwise
+            const targetRotSpeed = isNear ? 1 : -1;
+
+            // Smooth rotation speed
+            rotationSpeed.current = THREE.MathUtils.lerp(
+                rotationSpeed.current,
+                targetRotSpeed,
+                delta * 4 // smoothness
+            );
+
+            // rotation offset accumulates
+            rotOffset.current += rotationSpeed.current * delta * 4; // speed factor
+            // Apply rotation based on axis
+            if (axis === "x")
+                ref.current.rotation.x += rotationSpeed.current * delta * 10;
+            if (axis === "y")
+                ref.current.rotation.y += rotationSpeed.current * delta * 10;
+            if (axis === "z")
+                ref.current.rotation.y += rotationSpeed.current * delta * 10;
+        } else {
+            // stop rotation when stable
+            rotationSpeed.current = 0;
         }
     });
 
