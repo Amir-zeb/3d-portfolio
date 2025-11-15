@@ -1,0 +1,42 @@
+@use './colors.scss' as colors;
+
+header {
+  box-shadow: 0 0 10px #ffffff1c;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 5;
+}
+
+.brand {
+  .__wrapper {
+    border: 2px solid #fff;
+    border-radius: 5px;
+    padding: 0 7px;
+    transition: 0.2s all ease-in-out;
+
+    &:hover {
+      border-color: colors.$primary;
+    }
+
+    &:hover h2 {
+      color: colors.$primary;
+    }
+  }
+}
+
+nav {
+  .__nav_link {
+    cursor: pointer;
+    color: colors.$text;
+    transition: 0.2s all ease-in-out;
+    text-decoration: none;
+
+    &.active,
+    &:hover {
+      color: colors.$primary;
+    }
+
+  }
+}

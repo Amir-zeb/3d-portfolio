@@ -1,0 +1,11 @@
+Model Information:
+* title:	Dancer girl
+* source:	https://sketchfab.com/3d-models/dancer-girl-fab3884d0cd0449193c2d43d1a1dd1a0
+* author:	vaess (https://sketchfab.com/vaess)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Dancer girl" (https://sketchfab.com/3d-models/dancer-girl-fab3884d0cd0449193c2d43d1a1dd1a0) by vaess (https://sketchfab.com/vaess) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

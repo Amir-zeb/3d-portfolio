@@ -1,0 +1,11 @@
+Model Information:
+* title:	upgraded titan tvman v2
+* source:	https://sketchfab.com/3d-models/upgraded-titan-tvman-v2-8e4d09f6ad80407a80c8b393260197a1
+* author:	epicdude (https://sketchfab.com/Bruv_1)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "upgraded titan tvman v2" (https://sketchfab.com/3d-models/upgraded-titan-tvman-v2-8e4d09f6ad80407a80c8b393260197a1) by epicdude (https://sketchfab.com/Bruv_1) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
