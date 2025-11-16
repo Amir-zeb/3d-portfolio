@@ -1,6 +1,11 @@
+import SkillsCanvas from "../../scenes/SkillsCanvas";
+import '../../styles/skills.scss';
+
 const Skills = () => {
     return (
-        <>Skills</>
+        <section className="skills">
+            <SkillsCanvas />
+        </section>
     );
 }
 

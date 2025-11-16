@@ -7,7 +7,7 @@ const StarsCanvas = () => {
     return (
         <div className="stars_canvas_container">
             <Canvas camera={{ position: [0, 0, 0] }} >
-                <OrbitControls />
+                {/* <OrbitControls /> */}
                 <PointsExample />
                 <ambientLight intensity={1} color="#ffffff" />
             </Canvas>
@@ -39,7 +39,7 @@ function PointsExampleOld() {
             <pointsMaterial
                 transparent={true}
                 color="#f5e664ff"
-                size={0.65}           // size of each point
+                size={0.1}           // size of each point
                 map={texture}
                 sizeAttenuation={true} // perspective scaling
             />

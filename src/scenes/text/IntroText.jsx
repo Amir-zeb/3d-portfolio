@@ -1,46 +1,34 @@
-import { Text } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
-import { useEffect, useRef, useState } from "react";
+import { GradientTexture, Text3D } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
+import { useEffect, useState } from "react";
 
 const IntroText = () => {
 
     return (
         <group position={[-6, 1.5, 0]}>
             {/* Small text */}
-            <TypewriterText
-                fontSize={0.2}
+            <MyText
+                position={[0, 0, 0]}
                 color="white"
-                anchorX="left"
-                anchorY="middle"
-                billboard
-                castShadow receiveShadow
                 text='Hi, I am'
+                fontSize={0.4}
                 timeout={0}
-                />
+            />
 
             {/* Large Name */}
-            <TypewriterText
-                position={[0, -0.5, 0]}
-                fontSize={1}
+            <MyText
+                position={[0, -1, 0]}
+                fontSize={0.6}
                 color="#ff80cc"
-                anchorX="left"
-                anchorY="middle"
-                billboard
-                castShadow receiveShadow
                 text='Amir Zeb'
                 timeout={1000}
-                // font="/fonts/Inter-Bold.woff"   // optional custom font
-                />
+            />
 
             {/* Medium text */}
-            <TypewriterText
+            <MyText
                 position={[0, -1.5, 0]}
-                fontSize={0.6}
+                fontSize={0.3}
                 color="white"
-                anchorX="left"
-                anchorY="middle"
-                billboard
-                castShadow receiveShadow
                 text='Full Stack Developer'
                 timeout={2000}
             />
@@ -48,24 +36,49 @@ const IntroText = () => {
     );
 }
 
-const TypewriterText = ({ text, timeout,...props }) => {
+const MyText = ({ text, position, timeout = 0, fontSize, ...props }) => {
     const [display, setDisplay] = useState("");
 
     useEffect(() => {
         setTimeout(() => {
             let i = 0;
             const interval = setInterval(() => {
-                setDisplay(text.slice(0, i));
+                setDisplay(text.slice(0, i) + '|');
                 i++;
-                if (i > text.length) clearInterval(interval);
+                if (i > text.length) {
+                    setDisplay(text)
+                    clearInterval(interval)
+                };
             }, 80);
         }, timeout);
     }, []);
 
     return (
-        <Text {...props}>
+        <Text3D
+            position={position}
+            size={fontSize}
+            curveSegments={24}
+            brevelSegments={1}
+            bevelEnabled
+            bevelSize={0.03}
+            bevelThickness={0.01}
+            height={.1}
+            lineHeight={0.9}
+            letterSpacing={0.1}
+            font={'/fonts/Montserrat_Regular.json'}
+        >
             {display}
-        </Text>
+            <meshStandardMaterial
+                roughness={0.2}
+            >
+                <GradientTexture
+                    stops={[0, 1]} // As many stops as you want
+                    // colors={['white', 'hotpink']} // Colors need to match the number of stops
+                    colors={['#64ffda', '#0a192f']} // Colors need to match the number of stops
+                // size={1024} // Size is optional, default = 1024
+                />
+            </meshStandardMaterial>
+        </Text3D>
     );
 }
 
