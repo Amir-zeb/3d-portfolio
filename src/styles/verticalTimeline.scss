@@ -1,0 +1,156 @@
+@use './colors.scss' as colors;
+
+.vertical_timeline_container {
+    position: relative;
+    counter-reset: itemCounter;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 100%;
+        background-color: colors.$primary;
+    }
+}
+
+.vertical_timeline_ele_container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 10px;
+
+    &:nth-child(odd) {
+        justify-content: flex-start;
+
+        .vertical_timeline_ele_wrapper {
+            padding-left: 10%;
+            padding-right: 3%;
+
+            .vertical_timeline_ele_body {
+                animation: animateFromRight both;
+                animation-timeline: view(70% 5%);
+            }
+
+            &::before {
+                right: 0;
+                margin-right: -20px;
+            }
+        }
+    }
+
+    &:nth-child(even) {
+        justify-content: flex-end;
+
+        .vertical_timeline_ele_wrapper {
+            padding-right: 10%;
+            padding-left: 3%;
+
+            .vertical_timeline_ele_body {
+                animation: animateFromLeft both;
+                animation-timeline: view(10% 0%);
+            }
+
+            &::before {
+                left: 0;
+                margin-left: -20px;
+            }
+        }
+    }
+}
+
+.vertical_timeline_ele_wrapper {
+    width: 50%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: relative;
+
+    &::before {
+        counter-increment: itemCounter;
+        content: counter(itemCounter);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        font-weight: 600;
+        top: 10px;
+        width: 40px;
+        height: 40px;
+        background-color: colors.$primary;
+        color: colors.$secondary;
+        animation: bounce both;
+        animation-timeline: view(70% 5%);
+        border-radius: 100%;
+
+        &:nth-child(odd) {
+            left: unset;
+            right: 0;
+        }
+    }
+}
+
+.vertical_timeline_ele_body {
+    position: relative;
+    background-color: #fff;
+    border-top: 4px solid colors.$primary;
+    padding: 10px;
+
+    h2 {
+        color: colors.$secondary;
+        font-size: 1.4rem;
+    }
+
+    h3 {
+        color: colors.$secondary;
+        font-size: 0.8rem;
+    }
+
+    li {
+        color: colors.$secondary;
+        font-size: 0.75rem;
+    }
+}
+
+@keyframes animateFromLeft {
+    0% {
+        transform: translateX(-100px) scale(0.5);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes animateFromRight {
+    0% {
+        transform: translateX(100px) scale(0.5);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes bounce {
+
+    0% {
+        transform: translateY(100px) scale(0);
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+    }
+
+}

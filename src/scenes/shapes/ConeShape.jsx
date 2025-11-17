@@ -13,8 +13,8 @@ const ConeShape = ({ position = [0, 0, 0], rotation = [0, 0, 0], folderName = ''
 
     // Leva controls
     const ConeShape = useControls({
-        roughness: { value: 0, min: 0, max: 1, step: 0.25 },
-        metalness: { value: 0, min: 0, max: 1, step: 0.25 },
+        roughness: { value: 1, min: 0, max: 1, step: 0.05 },
+        metalness: { value: 1, min: 0, max: 1, step: 0.05 },
         [`${folderName}`]: folder({
             color1: '#3aad8f',
             color2: '#FF69B4',

@@ -1,8 +1,7 @@
-import { OrbitControls, Stars, useTexture } from "@react-three/drei";
+import { Environment, OrbitControls, useTexture } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { folder, Leva, useControls } from "leva";
+import { folder, useControls } from "leva";
 import { Suspense, useRef, useState } from "react";
-import { DirectionalLightHelper } from "three";
 import * as THREE from "three";
 import ConeShape from "./shapes/ConeShape";
 import SphereShape from "./shapes/SphereShape";
@@ -13,35 +12,27 @@ const HeroCanvas = () => {
 
     return (
         <div className="canvas_container" onClick={() => { setIsNear(!isNear); }} >
-            <Canvas
-                orthographic
-                camera={{
-                    zoom: 100,
-                    position: [0, 0, 5],
-                    fov: 75,
-                    near: 0.1,
-                    far: 1000
-                }} >
-                {/* <OrbitControls /> */}
-                <SphereWithCones isNear={isNear} />
-                <SpheresGroup />
-                <Suspense fallback={"Loading"}>
-                    {/* <Stars
-                        radius={100}
-                        depth={100}
-                        count={4000}
-                        factor={4}
-                        saturation={0}
-                        fade
-                        speed={0.2}
-                    /> */}
-                    {/* <Stars radius={0} depth={100} count={100} factor={1} saturation={0} fade speed={1} /> */}
-
-                </Suspense>
-                <IntroText />
-                <DirLightWithHelper />
-                <ambientLight intensity={1} color="#ffffff" />
-            </Canvas>
+            <Suspense fallback={<>
+                <div className="loader"></div>
+            </>}>
+                <Canvas
+                    orthographic
+                    camera={{
+                        zoom: 100,
+                        position: [0, 0, 20],
+                        fov: 75,
+                        near: 0.1,
+                        far: 1000
+                    }} >
+                    <Environment preset="warehouse" />
+                    <OrbitControls enableZoom={false} enablePan={true} />
+                    <SphereWithCones isNear={isNear} />
+                    <SpheresGroup />
+                    <IntroText />
+                    <DirLightWithHelper />
+                    <ambientLight intensity={1} color="#ffffff" />
+                </Canvas>
+            </Suspense>
         </div>
     );
 }

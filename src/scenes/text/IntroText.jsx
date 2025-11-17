@@ -1,15 +1,14 @@
-import { GradientTexture, Text3D } from "@react-three/drei";
-import { useThree } from "@react-three/fiber";
+import { Environment, GradientTexture, Text3D } from "@react-three/drei";
 import { useEffect, useState } from "react";
 
 const IntroText = () => {
 
     return (
-        <group position={[-6, 1.5, 0]}>
+        <group position={[-6.5, 1.5, 3]}>
             {/* Small text */}
             <MyText
                 position={[0, 0, 0]}
-                color="white"
+                color='#0a192f'
                 text='Hi, I am'
                 fontSize={0.4}
                 timeout={0}
@@ -28,7 +27,7 @@ const IntroText = () => {
             <MyText
                 position={[0, -1.5, 0]}
                 fontSize={0.3}
-                color="white"
+                color="#64ffda"
                 text='Full Stack Developer'
                 timeout={2000}
             />
@@ -36,7 +35,7 @@ const IntroText = () => {
     );
 }
 
-const MyText = ({ text, position, timeout = 0, fontSize, ...props }) => {
+const MyText = ({ text, position, timeout = 0, fontSize, color }) => {
     const [display, setDisplay] = useState("");
 
     useEffect(() => {
@@ -57,19 +56,23 @@ const MyText = ({ text, position, timeout = 0, fontSize, ...props }) => {
         <Text3D
             position={position}
             size={fontSize}
-            curveSegments={24}
-            brevelSegments={1}
+            curveSegments={125}
+            brevelSegments={10}
             bevelEnabled
-            bevelSize={0.03}
+            bevelSize={0.02}
             bevelThickness={0.01}
             height={.1}
-            lineHeight={0.9}
+            lineHeight={1}
             letterSpacing={0.1}
             font={'/fonts/Montserrat_Regular.json'}
         >
             {display}
             <meshStandardMaterial
-                roughness={0.2}
+                // color={color}
+                // metalness={0.5}
+                // roughness={0.2}
+                // transmission={1}
+                // ior={2.33}
             >
                 <GradientTexture
                     stops={[0, 1]} // As many stops as you want

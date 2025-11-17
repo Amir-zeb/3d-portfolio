@@ -12,7 +12,7 @@ export const projects = [
             "Redux Toolkit",
             "Axios",
         ],
-        image: "/assets/images/mocks/eventsify.png",
+        image: "./mocks/eventsify.png",
         link: ''
     },
     {
@@ -25,7 +25,7 @@ export const projects = [
             "Redux Toolkit",
             "Axios",
         ],
-        image: "/assets/images/mocks/bubbles.png",
+        image: "./mocks/bubbles.png",
         link: ''
     },
     {
@@ -42,7 +42,7 @@ export const projects = [
             "React Test Library",
             "Axios",
         ],
-        image: "/assets/images/mocks/gama-ag.png",
+        image: "./mocks/gama-ag.png",
         link: ''
     },
     {
@@ -55,7 +55,7 @@ export const projects = [
             "Sqlite db",
             "Axios",
         ],
-        image: "/assets/images/mocks/tourist.png",
+        image: "./mocks/tourist.png",
         link: ''
     },
     {
@@ -68,7 +68,7 @@ export const projects = [
             "Redux",
             "axios",
         ],
-        image: "/assets/images/mocks/poseidon.png",
+        image: "./mocks/poseidon.png",
         show: true,
         link: "https://drive.google.com/drive/folders/1jznLW6oQTPSt0FaNlY3sk29VIw0vq_dA?usp=sharing"
     },
@@ -84,7 +84,7 @@ export const projects = [
             "Redux Toolkit",
             "Axios",
         ],
-        image: "/assets/images/mocks/mold.png",
+        image: "./mocks/mold.png",
         show: true,
         link: "https://drive.google.com/drive/folders/1XwgiT43drnubnt2XboDwYXcNBGo6UFXF?usp=share_link"
     },
@@ -99,7 +99,7 @@ export const projects = [
             "FCM",
             "axios"
         ],
-        image: "/assets/images/mocks/litoral.png",
+        image: "./mocks/litoral.png",
         show: true,
         link: "https://drive.google.com/drive/folders/1ekQvDlDJgFz3Ic9fLR3s42jSC-HnG8xm?usp=sharing"
     },
@@ -113,7 +113,7 @@ export const projects = [
             "Redux Toolkit",
             "Axios",
         ],
-        image: "/assets/images/mocks/precocial.png",
+        image: "./mocks/precocial.png",
         show: true,
         link: ''
     },
@@ -128,7 +128,7 @@ export const projects = [
             "Javascript",
             "jquery",
         ],
-        image: "/assets/images/mocks/borderpay.png",
+        image: "./mocks/borderpay.png",
         show: true,
         link: '',
     },
@@ -143,7 +143,7 @@ export const projects = [
             "JavaScript",
             "jquery",
         ],
-        image: "/assets/images/mocks/campaway-12.png",
+        image: "./mocks/campaway-12.png",
         link: "http://campaway.surge.sh/",
         show: true
     },
@@ -161,7 +161,7 @@ export const projects = [
             "JavaScript",
             "jquery",
         ],
-        image: "/assets/images/mocks/dammam.png",
+        image: "./mocks/dammam.png",
         link: "http://dammam.surge.sh/",
         show: true
     },
@@ -175,7 +175,7 @@ export const projects = [
             "Bootstrap 5",
             "Javascript",
         ],
-        image: "/assets/images/mocks/andesT21.png",
+        image: "./mocks/andesT21.png",
         show: true,
         link: ''
     },
@@ -190,7 +190,7 @@ export const projects = [
             "Javascript",
             "jquery",
         ],
-        image: "/assets/images/mocks/study-buddy.png",
+        image: "./mocks/study-buddy.png",
         show: true,
         link: ''
     },
@@ -202,7 +202,7 @@ export const projects = [
             "Wordpress",
             "Elementor",
         ],
-        image: "/assets/images/mocks/propulsion.png",
+        image: "./mocks/propulsion.png",
         show: true,
         link: ''
     },
@@ -214,7 +214,7 @@ export const projects = [
             "Wordpress",
             "Elementor",
         ],
-        image: "/assets/images/mocks/tattoo.png",
+        image: "./mocks/tattoo.png",
         show: true,
         link: ''
     },
@@ -226,7 +226,7 @@ export const projects = [
             "Wordpress",
             "Elementor",
         ],
-        image: "/assets/images/mocks/auto-solutions.png",
+        image: "./mocks/auto-solutions.png",
         show: true,
         link: ''
     },
@@ -238,7 +238,7 @@ export const projects = [
             "Wordpress",
             "Elementor",
         ],
-        image: "/assets/images/mocks/acan.png",
+        image: "./mocks/acan.png",
         link: "https://drive.google.com/drive/folders/1FWGou04_lAM3vPwLFETF78PU0wrsPTTi?usp=share_link",
         show: true,
     },
@@ -250,7 +250,7 @@ export const projects = [
             "Wordpress",
             "WP Bakery",
         ],
-        image: "/assets/images/mocks/flippings.png",
+        image: "./mocks/flippings.png",
         show: true,
         link: ''
     },
@@ -262,7 +262,7 @@ export const projects = [
             "Html",
             "Css",
         ],
-        image: "/assets/images/mocks/dealorus.png",
+        image: "./mocks/dealorus.png",
         show: true,
         link: "http://dealourus.surge.sh/"
     },

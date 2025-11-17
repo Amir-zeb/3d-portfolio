@@ -1,0 +1,35 @@
+@use './colors.scss' as colors;
+
+.about {
+    animation: blurIntoView both linear;
+    // animation-timeline: view(5% 5%);
+    animation-timeline: view();
+    // animation-timeline: view(auto auto);
+
+    ul {
+        list-style-type: square;
+        color: colors.$primary !important;
+    }
+}
+
+@keyframes blurIntoView {
+
+    0% {
+        transform: translateY(200px) scale(1);
+        opacity: 0;
+        filter: blur(40px);
+    }
+
+    40%,
+    65% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+
+    100% {
+        opacity: 0.2;
+        filter: blur(40px);
+    }
+
+}

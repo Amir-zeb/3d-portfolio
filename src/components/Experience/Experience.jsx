@@ -1,53 +1,34 @@
 import { Col, Container, Row } from "react-bootstrap";
-import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
-import 'react-vertical-timeline-component/style.min.css';
+import '../../styles/experience.scss';
 import { experience } from "../../data/data";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { VerticalTimeline, VerticalTimelineElement } from "../VerticalTimeline/VerticalTimeline";
+import { sectionIds } from "../../constants";
 
 const Experience = () => {
     return (
-        <section className="experience">
-            <Container>
-                <Row>
-                    <Col>
-                        <VerticalTimeline>
-                            <VerticalTimelineElement
-                                className="vertical-timeline-element--work"
-                                contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-                                contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
-                                date="2011 - present"
-                                iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-                            >
-                                <h3 className="vertical-timeline-element-title">Creative Director</h3>
-                                <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
-                                <p>
-                                    Creative Direction, User Experience, Visual Design, Project Management, Team Leading
-                                </p>
-                            </VerticalTimelineElement>
-
-                            {/* {experience.map(item => (
-                                <VerticalTimelineElement
-                                    className="vertical-timeline-element--work"
-                                    contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-                                    contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
-                                    date="2011 - present"
-                                    iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-                                    icon={<FontAwesomeIcon icon={faPhone} />}
-                                >
-                                    <h3 className="vertical-timeline-element-title">{item.title}</h3>
-                                    <h4 className="vertical-timeline-element-subtitle">Karachi</h4>
-                                    <p>
-                                        {item.description}
-                                    </p>
-                                </VerticalTimelineElement>
-                            ))} */}
-                        </VerticalTimeline>
-                    </Col>
-                </Row>
-            </Container>
-        </section >
+        <>
+            <div className="visually-hidden" id={sectionIds.experience}></div>
+            <section className="experience sec_pd">
+                <Container>
+                    <Row>
+                        <Col xs={12}>
+                            <h2 className="text-center mb-5">Experience</h2>
+                        </Col>
+                        <Col>
+                            <VerticalTimeline>
+                                {experience.map((item, index) => {
+                                    return <VerticalTimelineElement key={index} item={item} />
+                                })}
+                            </VerticalTimeline>
+                        </Col>
+                    </Row>
+                </Container>
+            </section >
+        </>
     );
 }
 
 export default Experience;
+

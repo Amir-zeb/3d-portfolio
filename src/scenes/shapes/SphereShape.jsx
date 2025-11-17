@@ -7,10 +7,12 @@ const SphereShape = ({ args, position, rotation = [0, 0, 0], color: _color, fold
     const cube = useControls({
         [`${folderName}`]: folder({
             color: _color,
-            wireframe: false
-        })
+            wireframe: false,
+            roughness: { value: 0.75, min: 0, max: 1, step: 0.05 },
+            metalness: { value: 1, min: 0, max: 1, step: 0.25 },
+        }, { collapsed: true })
     })
-    const { color, wireframe } = cube
+    const { color, wireframe, roughness, metalness } = cube
 
     // --------------------------
     // Continuous rotation
@@ -28,7 +30,11 @@ const SphereShape = ({ args, position, rotation = [0, 0, 0], color: _color, fold
     return (
         <mesh ref={ref} position={position} rotation={rotation} castShadow >
             <sphereGeometry args={args} />
-            <meshStandardMaterial color={color} wireframe={wireframe}
+            <meshStandardMaterial
+                color={color}
+                wireframe={wireframe}
+                roughness={roughness}
+                metalness={metalness}
                 emissive={color}
                 emissiveIntensity={0.05}
                 {...props}
