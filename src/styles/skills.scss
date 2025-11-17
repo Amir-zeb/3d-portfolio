@@ -1,10 +1,35 @@
+@use './colors.scss' as colors;
+
 .skills {
     position: relative;
     height: 100vh;
     width: 100%;
+    // overflow: hidden;
+    // background-color: colors.$primary;
 
     .canvas_container {
         height: 100vh;
         width: 100%;
+    }
+
+    .box_container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+
+        display: grid;
+        grid-template-columns: repeat(var(--grid-cols), 50px);
+        grid-template-rows: repeat(var(--grid-rows), 50px);
+
+        justify-content: center;
+        align-items: center;
+    }
+
+    .item {
+        width: 50px;
+        height: 50px;
+        background-color: colors.$primary;
     }
 }
