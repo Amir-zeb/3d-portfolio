@@ -20,7 +20,7 @@ const About = () => {
                             <p className="">{about.para[4]}</p>
                             <ul>
                                 {about.recentTechnologies.map((x, i) => {
-                                    return <li class="text-white" key={i}>{x}</li>
+                                    return <li className="text-white" key={i}>{x}</li>
                                 })}
                             </ul>
                         </Col>

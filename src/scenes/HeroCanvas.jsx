@@ -1,4 +1,4 @@
-import { Environment, OrbitControls, useTexture } from "@react-three/drei";
+import { MeshTransmissionMaterial, Environment, OrbitControls, useTexture, Torus } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { folder, useControls } from "leva";
 import { Suspense, useRef, useState } from "react";
@@ -29,6 +29,23 @@ const HeroCanvas = () => {
                     <SphereWithCones isNear={isNear} />
                     <SpheresGroup />
                     <IntroText />
+                    {/* <mesh>
+                        <sphereGeometry args={[1,1,20]} />
+                        <MeshTransmissionMaterial
+                            samples={32}
+                            resolution={1024}
+                            transmission={1}
+                            thickness={0.6}
+                            ior={1.52}
+                            chromaticAberration={0.05}
+                            roughness={0}
+                            anisotropy={0.1}
+                            distortion={0.05}
+                            distortionScale={0.3}
+                            temporalDistortion={0.1}
+                        />
+                    </mesh> */}
+
                     <DirLightWithHelper />
                     <ambientLight intensity={1} color="#ffffff" />
                 </Canvas>

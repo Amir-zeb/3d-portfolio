@@ -1,4 +1,4 @@
-import { About, Experience, Hero, Projects, Skills } from "./components";
+import { About, Contact, Experience, Hero, Projects, Skills } from "./components";
 import PrimaryLayout from "./Layout/PrimaryLayout";
 
 const App = () => {
@@ -10,6 +10,7 @@ const App = () => {
         <Experience />
         <Skills />
         <Projects />
+        <Contact />
       </PrimaryLayout>
     </>
   );

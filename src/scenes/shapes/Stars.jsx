@@ -4,7 +4,7 @@ import { useMemo, useRef } from "react";
 import * as THREE from "three";
 
 
-const Stars = ({ size = 0.5, color = "#f5e664",count=500 }) => {
+const Stars = ({ size = 0.5, color = "#f5e664", count = 500 }) => {
     const ref = useRef();
 
     const texture = useTexture("public/star.png");
@@ -59,7 +59,7 @@ const Stars = ({ size = 0.5, color = "#f5e664",count=500 }) => {
         posAttr.needsUpdate = true;
 
         // Optional: slow rotation of entire cloud
-        ref.current.rotation.y += 0.001;
+        ref.current.rotation.y += 0.001 * 0.001;
     });
 
     return (
@@ -69,7 +69,7 @@ const Stars = ({ size = 0.5, color = "#f5e664",count=500 }) => {
                 color={color}
                 size={size}
                 map={texture}
-                // sizeAttenuation
+            // sizeAttenuation
             />
         </points>
     );

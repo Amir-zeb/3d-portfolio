@@ -1,0 +1,10 @@
+@use './colors.scss' as colors;
+
+.contact {
+    position: relative;
+
+    .canvas_container {
+        height: 100vh;
+        width: 100%;
+    }
+}
