@@ -1,12 +1,15 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { sectionIds } from "../../constants";
 import '../../styles/projects.scss';
 import { projects } from "../../data/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import StarsCanvas from "../../scenes/StarsCanvas";
+import { useState } from "react";
 
 const Projects = () => {
+    const [viewAll, setViewAll] = useState(false);
+
     return (
         <>
             <div id={sectionIds.projects} className="visually-hidden"></div>
@@ -20,6 +23,9 @@ const Projects = () => {
                             <div className="projects_list_container">
                                 {
                                     projects.map((item, index) => <Card v={item} key={index} />)
+                                }
+                                {!viewAll &&
+                                    <Button type='button' onClick={() => setViewAll(true)}>View More</Button>
                                 }
                             </div>
                         </Col>

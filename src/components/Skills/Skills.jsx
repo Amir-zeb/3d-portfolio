@@ -3,6 +3,7 @@ import '../../styles/skills.scss';
 import { sectionIds } from "../../constants";
 import SkillsCanvas from "../../scenes/SkillsCanvas";
 import { useEffect, useRef, useState } from "react";
+import { skills } from "../../data/data";
 
 
 const Skills = () => {
@@ -14,6 +15,15 @@ const Skills = () => {
                     <Row>
                         <Col xs={12}>
                             <h2 className="text-center text_secondarys mb-5">Skills</h2>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <div className="flex_container">
+                                {skills.map((x, i) => {
+                                    return <h4 key={i}>{x.title}</h4>
+                                })}
+                            </div>
                         </Col>
                     </Row>
                 </Container>
